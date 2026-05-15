@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  nextjs:
+    build:
+      context: ./docker/nextjs
+      dockerfile: Dockerfile
+    ports:
+      - "3008:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # コンテナ内のnode_modulesを保持
+    environment:
+      - NODE_ENV=development
+    command: sh -c "npm install && npm run dev"
+
+  # 後日使用（今はコメントアウト）
+  # laravel:
+  #   build:
+  #     context: ./docker/laravel
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - ./backend:/var/www
+  #   depends_on:
+  #     - mysql
+  #
+  # mysql:
+  #   image: mysql:8.0
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_DATABASE: todo
+  #     MYSQL_ROOT_PASSWORD: root
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+
+# volumes:
+#   mysql_data:

@@ -12,6 +12,7 @@
 # リポジトリをクローン
 git clone <リポジトリURL>
 cd todo-app
+```
 
 # コンテナを起動
 docker compose up -d
@@ -40,7 +41,7 @@ docker compose down
 
 ## 開発の流れ
 
-```bash
+
 # 1. 最新のコードを取得
 git pull origin main
 

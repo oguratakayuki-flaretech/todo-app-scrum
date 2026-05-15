@@ -25,13 +25,9 @@ docker compose up -d
 
 ## コンテナの停止
 
-```bash
+```
 docker compose down
-
-## コンテナの停止
-
-```bash
-docker compose down
+```
 
 ## よくあるトラブル
 

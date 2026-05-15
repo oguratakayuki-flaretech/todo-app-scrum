@@ -13,7 +13,7 @@
 
 1. `frontend/public/design/index.html` を作成
 2. draw.ioのモックを参考にコーディング
-3. ブラウザで直接ファイルを開いて確認
+3. ブラウザで直接ファイルを開いて確認 (http://localhost:3008/design/index.html)
 
 ## 開発手順（React移植）
 

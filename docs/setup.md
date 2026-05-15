@@ -43,19 +43,27 @@ docker compose down
 
 
 # 1. 最新のコードを取得
+```
 git pull origin main
+```
 
 # 2. 作業用ブランチを作成
+```
 git checkout -b feature/タスク名
+```
 
 # 3. コーディング（ここで編集）
 
 # 4. コミット
+```
 git add .
 git commit -m "[FE] やったことの概要"
+```
 
 # 5. プッシュ
+```
 git push origin feature/タスク名
+```
 
 # 6. GitHubでプルリクエストを作成
 

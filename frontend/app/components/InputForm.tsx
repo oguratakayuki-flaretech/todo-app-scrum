@@ -1,17 +1,20 @@
 export const InputForm = () => {
-  //   const handleClick = () => {
-  //     console.log("押された");
-  //   };
+  const handleClick = () => {
+    console.log("追加された");
+  };
 
   return (
     <div className="flex gap-2 mb-6">
       {/* 入力欄 */}
       <input
-        className="flex-1 border border-gray-200 rounded-lg px-4 py-2 text-sm outline-none focus:border-gray-400 transition"
-        placeholder="タスクを入力..."
+        className="border border-gray-200 px-4 py-2 outline-none"
+        placeholder="📝 新しいタスクを入力..."
       />
       {/* ボタン */}
-      <button className="bg-gray-800 text-white text-sm px-4 py-2 rounded-lg hover:bg-gray-700 transition">
+      <button
+        className="bg-gray-900 text-white px-4 py-2"
+        onClick={handleClick}
+      >
         追加
       </button>
     </div>

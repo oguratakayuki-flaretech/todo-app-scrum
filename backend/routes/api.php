@@ -10,3 +10,7 @@ Route::get('/user', function (Request $request) {
 Route::get('/health', function () {
     return response()->json(['status' => 'ok']);
 });
+
+use App\Http\Controllers\TaskController;
+
+Route::get('/tasks', [TaskController::class, 'index']);

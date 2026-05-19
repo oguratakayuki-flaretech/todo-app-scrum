@@ -24,7 +24,8 @@ services:
       - ./backend:/var/www
     # MySQL依存なし
     command: sh -c "if [ ! -f vendor/autoload.php ]; then composer install; fi; php artisan serve --host=0.0.0.0 --port=8000"
-
+    environment:
+      - APP_ENV=local
 
   mysql:
     image: mysql:8.0

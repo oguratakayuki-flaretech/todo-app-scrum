@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TODOアプリ デザインモック</title>
+    <meta name="description" content="説明文" />
+    <link rel="stylesheet" href="./css/reset.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__inner">
+        <h1 class="title">TODO アプリ</h1>
+      </div>
+    </header>
+    <main class="app">
+      <div class="app__inner">
+        <p class="app__text">今日やることを管理しよう</p>
+
+        <div class="app__form">
+          <div class="app__input-wrap">
+            <input type="text" class="app__input" placeholder="新しいタスクを入力..." />
+          </div>
+
+          <button type="button" class="app__btn btn--primary">＋追加</button>
+        </div>
+
+        <div class="app__filter">
+          <div class="app__tabs">
+            <button type="button" class="app__tab is-active">全て</button>
+            <button type="button" class="app__tab">未完了</button>
+            <button type="button" class="app__tab">完了</button>
+          </div>
+
+          <p class="app__count">3タスク・未完了2</p>
+        </div>
+
+        <div class="app__schedule">
+          <div class="app__task app__task--done app__task--priority">
+            <div class="app__task-content">
+              <button type="button" class="app__check" aria-label="完了にする">
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <p class="app__assignment">企画書を作成</p>
+            </div>
+
+            <div class="app__task-actions">
+              <button type="button" class="app__delete" aria-label="タスクを削除">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="app__task">
+            <div class="app__task-content">
+              <button type="button" class="app__check" aria-label="完了にする">
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <p class="app__assignment">要件定義をまとめる</p>
+            </div>
+
+            <div class="app__task-actions">
+              <button type="button" class="app__delete" aria-label="タスクを削除">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="app__task">
+            <div class="app__task-content">
+              <button type="button" class="app__check" aria-label="完了にする">
+                <i class="fa-solid fa-check"></i>
+              </button>
+              <p class="app__assignment">デザインをFigmaで作る</p>
+            </div>
+
+            <div class="app__task-actions">
+              <button type="button" class="app__delete" aria-label="タスクを削除">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <p class="app__description">ドラッグ＆ドロップで並び替え可能</p>
+      </div>
+    </main>
+
+    <footer></footer>
+    <script src="app.js"></script>
+  </body>
+</html>

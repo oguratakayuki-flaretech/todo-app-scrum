@@ -53,4 +53,35 @@ class TaskApiTest extends TestCase
         // 念のため2件取得できているか数を確認
         $response->assertJsonCount(2, 'tasks');
     }
+
+    /**
+     * タスクが正常に作成できることをテスト
+     */
+    public function test_can_create_task(): void
+    {
+        // 1. テスト用のデータを用意
+        $data = ['title' => '新しいテストタスク'];
+
+        // 2. POST /api/tasks にデータを送る
+        $response = $this->postJson('/api/tasks', $data);
+
+        // 3. ステータスコードが 201 であること、データが返ってきていることを確認
+        $response->assertStatus(201)
+                 ->assertJsonFragment($data);
+
+        // 4. データベースに本当に保存されたか確認
+        $this->assertDatabaseHas('tasks', $data);
+    }
+
+    /**
+     * タイトルが空の場合はバリデーションエラーになることをテスト
+     */
+    public function test_create_task_requires_title(): void
+    {
+        // タイトルを空にしてデータを送る
+        $response = $this->postJson('/api/tasks', ['title' => '']);
+
+        // 422（バリデーションエラー）が返ってくることを確認
+        $response->assertStatus(422);
+    }
 }

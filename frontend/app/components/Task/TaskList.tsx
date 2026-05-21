@@ -6,13 +6,19 @@ import type { Task } from "../../types";
 type Props = {
   tasks: Task[];
   toggleTask: (id: number) => void;
+  deleteTask: (id: number) => void;
 };
 
-export const TaskList = ({ tasks, toggleTask }: Props) => {
+export const TaskList = ({ tasks, toggleTask, deleteTask }: Props) => {
   return (
     <ul className="flex flex-col gap-3 mb-6">
       {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} toggleTask={toggleTask} />
+        <TaskItem
+          key={task.id}
+          task={task}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
       ))}
     </ul>
   );

@@ -33,4 +33,24 @@ class TaskController extends Controller
         // 作成したタスクをレスポンスとして返す（ステータスコード201）
         return response()->json($task, 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        // 1. 指定されたIDのタスクを探す（なければ自動で404エラーになる優れもの）
+        $task = Task::findOrFail($id);
+
+        // 2. バリデーションチェック
+        // titleは空でもOK(nullable)だけど、文字数は255文字まで
+        // completedは空でもOKだけど、中身はtrueかfalse(boolean)
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'completed' => 'nullable|boolean',
+        ]);
+
+        // 3. 安全にチェックを通ったデータ（$validated）だけでタスクを更新
+        $task->update($validated);
+
+        // 4. 更新されたあとのタスクの情報を、200 OK で返却
+        return response()->json($task, 200);
+    }
 }

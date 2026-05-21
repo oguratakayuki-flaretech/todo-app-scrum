@@ -13,8 +13,16 @@ export default function Home() {
   // タスクを追加
   const addTask = () => {
     if (!input.trim()) return;
-    setTasks([...tasks, { id: Date.now(), title: input }]);
+    setTasks([...tasks, { id: Date.now(), title: input, completed: false }]);
     setInput("");
+  };
+  // チェックボックスの状態切り替え
+  const toggleTask = (id: number) => {
+    setTasks(
+      tasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task,
+      ),
+    );
   };
   return (
     <main className="flex min-h-screen items-center justify-center">
@@ -22,7 +30,7 @@ export default function Home() {
         {/* 入力欄 */}
         <InputForm input={input} setInput={setInput} addTask={addTask} />
         {/* タスク一覧 */}
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks} toggleTask={toggleTask} />
       </div>
     </main>
   );

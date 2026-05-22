@@ -18,7 +18,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(\Illuminate\Http\Request $request)
+    public function store(Request $request)
     {
         // バリデーション：title は必須、文字列、最大255文字
         $validated = $request->validate([
@@ -26,7 +26,7 @@ class TaskController extends Controller
         ]);
 
         // リクエストから title を受け取り、新規タスクを作成
-        $task = \App\Models\Task::create([
+        $task = Task::create([
             'title' => $validated['title'],
         ]);
 
@@ -62,5 +62,17 @@ class TaskController extends Controller
 
         // 5. 更新されたあとのタスクの情報を、200 OK で返却
         return response()->json($task, 200);
+    }
+
+    public function destroy($id)
+    {
+        // 1. 指定されたIDのタスクを探す（存在しなければ自動で404エラーを返す）
+        $task = Task::findOrFail($id);
+
+        // 2. データベースからタスクを削除する
+        $task->delete();
+
+        // 3. 204 No Content（削除成功・返す中身はなし）のステータスコードを返却
+        return response()->noContent();
     }
 }

@@ -3,7 +3,8 @@ import { useState } from "react";
 import { InputForm } from "./components/InputForm";
 import { TaskList } from "./components/Task/TaskList";
 import { FilterBar } from "./components/FilterBar";
-
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 // 型定義
 import type { Task, Filter } from "./types";
 
@@ -40,17 +41,23 @@ export default function Home() {
   });
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <div className="max-w-sm w-full">
-        {/* フィルター */}
-        <FilterBar filter={filter} setFilter={setFilter} tasks={tasks} />
-        {/* 入力欄 */}
-        <InputForm input={input} setInput={setInput} addTask={addTask} />
-        {/* タスク一覧 */}
-        <TaskList
-          tasks={filteredTasks}
-          toggleTask={toggleTask}
-          deleteTask={deleteTask}
-        />
+      <div className="max-w-md w-full shadow-md">
+        {/* ヘッダー */}
+        <Header />
+        <div className="p-6">
+          {/* 入力欄 */}
+          <InputForm input={input} setInput={setInput} addTask={addTask} />
+          {/* フィルター */}
+          <FilterBar filter={filter} setFilter={setFilter} tasks={tasks} />
+          {/* タスク一覧 */}
+          <TaskList
+            tasks={filteredTasks}
+            toggleTask={toggleTask}
+            deleteTask={deleteTask}
+          />
+          {/* フッター */}
+          <Footer />
+        </div>
       </div>
     </main>
   );

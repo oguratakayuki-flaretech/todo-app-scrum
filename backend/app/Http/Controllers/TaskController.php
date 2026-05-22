@@ -33,4 +33,34 @@ class TaskController extends Controller
         // 作成したタスクをレスポンスとして返す（ステータスコード201）
         return response()->json($task, 201);
     }
+
+    public function update(Request $request, $id)
+    {
+        // 1. 指定されたIDのタスクを探す（なければ自動で404エラー）
+        $task = Task::findOrFail($id);
+
+        // 2. バリデーションチェック
+        $validated = $request->validate([
+            'title' => 'nullable|string|max:255',
+            'completed' => 'nullable|boolean',
+        ]);
+
+        // 3. 【修正のポイント】null のデータは無視して、値があるものだけを上書きする
+        
+        // title がリクエストに含まれている場合のみ上書き
+        if ($request->has('title')) {
+            $task->title = $validated['title'];
+        }
+
+        // completed がリクエストに含まれていて、かつ null ではない場合のみ上書き
+        if ($request->has('completed') && !is_null($request->input('completed'))) {
+            $task->completed = $validated['completed'];
+        }
+
+        // 4. 変更をデータベースに保存
+        $task->save();
+
+        // 5. 更新されたあとのタスクの情報を、200 OK で返却
+        return response()->json($task, 200);
+    }
 }

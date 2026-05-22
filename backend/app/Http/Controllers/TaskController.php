@@ -18,7 +18,7 @@ class TaskController extends Controller
         ]);
     }
 
-    public function store(Request $request) // 省略されていた記述を綺麗に整理しました
+    public function store(Request $request)
     {
         // バリデーション：title は必須、文字列、最大255文字
         $validated = $request->validate([
@@ -36,7 +36,7 @@ class TaskController extends Controller
 
     public function update(Request $request, $id)
     {
-        // 1. 指定されたIDのタスクを探す
+        // 1. 指定されたIDのタスクを探す（なければ自動で404エラー）
         $task = Task::findOrFail($id);
 
         // 2. バリデーションチェック
@@ -45,11 +45,14 @@ class TaskController extends Controller
             'completed' => 'nullable|boolean',
         ]);
 
-        // 3. null のデータは無視して、値があるものだけを上書きする
+        // 3. 【修正のポイント】null のデータは無視して、値があるものだけを上書きする
+        
+        // title がリクエストに含まれている場合のみ上書き
         if ($request->has('title')) {
             $task->title = $validated['title'];
         }
 
+        // completed がリクエストに含まれていて、かつ null ではない場合のみ上書き
         if ($request->has('completed') && !is_null($request->input('completed'))) {
             $task->completed = $validated['completed'];
         }

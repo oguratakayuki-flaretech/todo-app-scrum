@@ -15,5 +15,6 @@ Route::get('/health', function () {
 // --- タスクAPIのルート一覧 ---
 Route::get('/tasks', [TaskController::class, 'index']);      // 一覧取得
 Route::post('/tasks', [TaskController::class, 'store']);     // 新規作成
-Route::put('/tasks/{id}', [TaskController::class, 'update']); // タスク更新（これが必要！）
-Route::delete('/tasks/{id}', [TaskController::class, 'destroy']); // タスク削除（今回追加）
+Route::put('/tasks/{id}', [TaskController::class, 'update']); // タスク更新
+Route::delete('/tasks/{id}', [TaskController::class, 'destroy']); // タスク削除
+

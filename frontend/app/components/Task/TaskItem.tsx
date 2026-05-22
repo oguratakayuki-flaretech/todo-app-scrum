@@ -11,7 +11,7 @@ type Props = {
 // Propsだと宣言してtaskを分割代入
 export const TaskItem = ({ task, toggleTask, deleteTask }: Props) => {
   return (
-    <li className="border border-gray-200 px-4 py-2 flex items-center gap2">
+    <li className="border border-gray-200 px-4 py-2 flex items-center gap-2">
       <input
         type="checkbox"
         className="mr-2"

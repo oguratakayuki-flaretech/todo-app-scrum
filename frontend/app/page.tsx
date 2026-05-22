@@ -2,14 +2,18 @@
 import { useState } from "react";
 import { InputForm } from "./components/InputForm";
 import { TaskList } from "./components/Task/TaskList";
+import { FilterBar } from "./components/FilterBar";
+
 // 型定義
-import type { Task } from "./types";
+import type { Task, Filter } from "./types";
 
 export default function Home() {
   // useStateでtasksを管理
   const [tasks, setTasks] = useState<Task[]>([]);
   // useStateでinputを管理
   const [input, setInput] = useState<string>("");
+  // useStateでfilterを管理
+  const [filter, setFilter] = useState<Filter>("all");
   // タスクを追加
   const addTask = () => {
     if (!input.trim()) return;
@@ -28,15 +32,22 @@ export default function Home() {
   const deleteTask = (id: number) => {
     setTasks(tasks.filter((task) => task.id !== id));
   };
-
+  // フィルターで表示タスクを切り替え
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "all") return true;
+    if (filter === "active") return !task.completed;
+    if (filter === "completed") return task.completed;
+  });
   return (
     <main className="flex min-h-screen items-center justify-center">
-      <div className="max-w-md">
+      <div className="max-w-sm w-full">
+        {/* フィルター */}
+        <FilterBar filter={filter} setFilter={setFilter} tasks={tasks} />
         {/* 入力欄 */}
         <InputForm input={input} setInput={setInput} addTask={addTask} />
         {/* タスク一覧 */}
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           toggleTask={toggleTask}
           deleteTask={deleteTask}
         />

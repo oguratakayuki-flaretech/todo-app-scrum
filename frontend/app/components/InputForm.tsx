@@ -12,7 +12,7 @@ export const InputForm = ({ input, setInput, addTask }: Props) => {
     <div className="flex gap-2 mb-6">
       {/* 入力欄 */}
       <input
-        className="border border-gray-200 px-4 py-2 outline-none"
+        className="border border-gray-200 px-4 py-2 outline-none flex-1"
         placeholder="📝 新しいタスクを入力..."
         value={input}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

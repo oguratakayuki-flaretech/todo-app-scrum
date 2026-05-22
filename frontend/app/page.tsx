@@ -24,13 +24,22 @@ export default function Home() {
       ),
     );
   };
+  // 削除ボタンを押したら完了タスクを削除
+  const deleteTask = (id: number) => {
+    setTasks(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <main className="flex min-h-screen items-center justify-center">
       <div className="max-w-md">
         {/* 入力欄 */}
         <InputForm input={input} setInput={setInput} addTask={addTask} />
         {/* タスク一覧 */}
-        <TaskList tasks={tasks} toggleTask={toggleTask} />
+        <TaskList
+          tasks={tasks}
+          toggleTask={toggleTask}
+          deleteTask={deleteTask}
+        />
       </div>
     </main>
   );
